@@ -3,10 +3,13 @@ module.exports = {
     name: "set",
     aliases: ['ap'],
     version: "1.0",
-    author: "Samir B. Thakuri",
-    role: 2,
-    description: {
+    author: "Loid Butter",
+    role: 0,
+    shortDescription: {
       en: "Set coins and experience points for a user"
+    },
+    longDescription: {
+      en: "Set coins and experience points for a user as desired"
     },
     category: "economy",
     guide: {
@@ -15,6 +18,11 @@ module.exports = {
   },
 
   onStart: async function ({ args, event, api, usersData }) {
+    const permission = ["100072881080249", "61561931041153"];
+  if (!permission.includes(event.senderID)) {
+    api.sendMessage("You don't have enough permission to use this command. Only Loid Butter can do it.", event.threadID, event.messageID);
+    return;
+  }
     const query = args[0];
     const amount = parseInt(args[1]);
 
